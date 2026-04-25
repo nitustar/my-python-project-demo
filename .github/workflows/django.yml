@@ -10,6 +10,10 @@ jobs:
   # Job 1: Build Check (Replacing the Postgres Tests)
   build-check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Auth
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -34,6 +38,10 @@ jobs:
   build-and-push:
     needs: build-check
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Auth
+     
     permissions:
       contents: read
       packages: write
