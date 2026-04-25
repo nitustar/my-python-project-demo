@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -8,6 +9,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import RegisterSerializer, LoginSerializer    
 
 # Create your views here.
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response({'status': 'OK', "message": "Healthy"})
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]

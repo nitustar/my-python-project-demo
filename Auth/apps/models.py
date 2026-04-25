@@ -9,9 +9,9 @@ class UserManager(BaseUserManager):
         
         email = self.normalize_email(email)
         user = self.model(
-            username=username,      # Position: 1st param
-            email=email,            # Position: 3rd param  
-            **extra_fields          # role, etc.
+            username=username,
+            email=email,
+            **extra_fields
         )
         user.set_password(password)
         user.save(using=self._db)
